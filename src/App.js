@@ -30,7 +30,7 @@ function App() {
               <li><Link to="/">Home</Link></li>
               <li onClick={handleToggle}>Products
                 <ul className={isActive ? "show" : "hide"}> 
-                  {prod.map(p => (<li key={p.id}><Link to={'product/' + p.id}>{p.prodName}</Link></li>))}
+                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id}>{p.prodName}</Link></li>))}
                 </ul>
               </li>
               <li><Link to="/contact">Contact</Link></li>
