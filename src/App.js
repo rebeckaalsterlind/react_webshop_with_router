@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import './App.css';
 import Home from "./Home";
 import Contact from "./Contact";
@@ -16,16 +17,19 @@ console.log('data', prod);
 
 function App() {
 
-
-  return (
+ const [isActive, setActive] = useState(false);
+ const handleToggle = () => setActive(!isActive);
+  
+ 
+ return (
     <div className="App">
-
+     
       <Router>
           <nav>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li>Products
-                <ul> 
+              <li onClick={handleToggle}>Products
+                <ul className={isActive ? "show" : "hide"}> 
                   {prod.map(p => (<li key={p.id}><Link to={'product/' + p.id}>{p.prodName}</Link></li>))}
                 </ul>
               </li>
