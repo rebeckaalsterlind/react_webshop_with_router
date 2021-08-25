@@ -33,7 +33,7 @@ function App() {
               <li><Link to="/" className="link">Home</Link></li>
               <li onClick={handleToggle} ><Link to={'/products'} className="link">Products</Link></li>
                 <ul id="subUl" className={isActive ? "show" : "hide"} > 
-                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id} className="link">{p.prodName}</Link></li>))}
+                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id + '/' + p.prodName} className="link">{p.prodName}</Link></li>))}
                 </ul>
               <li><Link to="/contact" className="link">Contact</Link></li>
             </ul>
@@ -43,7 +43,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/products" component={Products} />
-          <Route path="/product/:id" component={Product} />
+          <Route path="/product/:id/:prodName" component={Product} />
           <Route path="/contact" component={Contact} />
           <Route path="*" component={NotFound} />
         </Switch>
@@ -55,3 +55,5 @@ function App() {
 }
 
 export default App;
+
+// <Link to={'/product/' + p.id + '/' + p.prodName}

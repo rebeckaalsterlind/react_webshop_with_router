@@ -9,7 +9,7 @@ function Product(props) {
 
   return (
     <main className="Product">
-      <h2>{result.prodName}</h2>
+      <h2>{props.match.params.prodName}</h2>
       <h3>{result.price}:-</h3>
       <img src={url.default} alt={"Shoe in color " + result.prodName}/>
     </main>
