@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import './App.css';
 import Home from "./Home";
 import Contact from "./Contact";
-import Product from "./Product"
+import Products from "./Products";
+import Product from "./Product";
 import NotFound from "./NotFound";
 
 import {
@@ -12,37 +13,40 @@ import {
   Switch
 } from "react-router-dom";
 
-const prod = require('./produkter.json');
-console.log('data', prod);
+const prod = require('./products/produkter.json');
 
 function App() {
 
- const [isActive, setActive] = useState(false);
- const handleToggle = () => setActive(!isActive);
-  
- 
- return (
+  const [isActive, setActive] = useState(false);
+  const handleToggle = () => setActive(!isActive);
+
+  return (
     <div className="App">
-     
+      
       <Router>
+        <header>    
+          <h1><Link to="/" id="logo" >Web shop</Link></h1>
+        </header>
+        <aside>
           <nav>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li onClick={handleToggle}>Products
-                <ul className={isActive ? "show" : "hide"}> 
-                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id}>{p.prodName}</Link></li>))}
+              <li><Link to="/" className="link">Home</Link></li>
+              <li onClick={handleToggle} ><Link to={'/products'} className="link">Products</Link></li>
+                <ul id="subUl" className={isActive ? "show" : "hide"} > 
+                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id} className="link">{p.prodName}</Link></li>))}
                 </ul>
-              </li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/contact" className="link">Contact</Link></li>
             </ul>
           </nav>
-          
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/product/:id" component={Product} />
-            <Route path="*" component={NotFound} />
-          </Switch>
+        </aside>
+                  
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/products" component={Products} />
+          <Route path="/product/:id" component={Product} />
+          <Route path="/contact" component={Contact} />
+          <Route path="*" component={NotFound} />
+        </Switch>
 
       </Router>
 

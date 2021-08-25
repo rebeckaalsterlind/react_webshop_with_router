@@ -1,19 +1,18 @@
-import React, { Component } from 'react'
+import "./Product.css";
 
 const prod = require('./products/produkter.json');
-console.log('data', prod);
 
 function Product(props) {
  
- const result = prod.find( ({ id }) => id == props.match.params.id );
+ const result = prod.find( ({ id }) => id.toString() === props.match.params.id );
  let url = require('./products/' + result.image);
- console.log('url', url.default);
+
   return (
-    <div className="Product">
+    <main className="Product">
       <h2>{result.prodName}</h2>
-      <p>{result.price}:-</p>
-      <img src={url.default} alt="test" />
-    </div>
+      <h3>{result.price}:-</h3>
+      <img src={url.default} alt={"Shoe in color " + result.prodName}/>
+    </main>
   );
 }
 
