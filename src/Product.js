@@ -5,7 +5,8 @@ const prod = require('./products/produkter.json');
 function Product(props) {
  
  const result = prod.find( ({ id }) => id.toString() === props.match.params.id );
- let url = require('./products/' + result.image);
+ let url = require('../public/products/' + result.image);
+ console.log('url', url.default);
 
   return (
     <main className="Product">

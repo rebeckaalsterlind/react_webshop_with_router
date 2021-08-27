@@ -9,7 +9,7 @@ import NotFound from "./NotFound";
 import {
   BrowserRouter as Router, 
   Route, 
-  Link,
+  NavLink,
   Switch
 } from "react-router-dom";
 
@@ -25,24 +25,24 @@ function App() {
       
       <Router>
         <header>    
-          <h1><Link to="/" id="logo" >Web shop</Link></h1>
+          <h1><NavLink exact activeClassName="active-link" to="/" id="logo" >Web shop</NavLink></h1>
         </header>
         <aside>
           <nav>
             <ul>
-              <li><Link to="/" className="link">Home</Link></li>
-              <li onClick={handleToggle} ><Link to={'/products'} className="link">Products</Link></li>
+              <li><NavLink exact activeClassName="active-link" to="/" className="link">Home</NavLink></li>
+              <li onClick={handleToggle} ><NavLink activeClassName="active-link" to={'/products'} className="link">Products</NavLink></li>
                 <ul id="subUl" className={isActive ? "show" : "hide"} > 
-                  {prod.map(p => (<li key={p.id}><Link to={'/product/' + p.id + '/' + p.prodName} className="link">{p.prodName}</Link></li>))}
+                  {prod.map(p => (<li key={p.id}><NavLink exact activeClassName="active-link" to={'/product/' + p.id + '/' + p.prodName} className="link">{p.prodName}</NavLink></li>))}
                 </ul>
-              <li><Link to="/contact" className="link">Contact</Link></li>
+              <li><NavLink exact activeClassName="active-link" to="/contact" className="link">Contact</NavLink></li>
             </ul>
           </nav>
         </aside>
                   
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/products" component={Products} />
+          <Route path="/products" render={() => <Products id={"3"} />} />
           <Route path="/product/:id/:prodName" component={Product} />
           <Route path="/contact" component={Contact} />
           <Route path="*" component={NotFound} />
@@ -56,4 +56,6 @@ function App() {
 
 export default App;
 
-// <Link to={'/product/' + p.id + '/' + p.prodName}
+
+// dont have props to send component={() => <Products />}
+// have props to send render={() => <Products id={"3"} />}
